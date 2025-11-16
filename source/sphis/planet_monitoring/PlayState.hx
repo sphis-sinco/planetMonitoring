@@ -1,4 +1,4 @@
-package;
+package sphis.planet_monitoring;
 
 import flixel.FlxState;
 
