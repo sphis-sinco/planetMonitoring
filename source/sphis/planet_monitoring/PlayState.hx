@@ -9,6 +9,7 @@ class PlayState extends FlxState
 	override public function create()
 	{
 		super.create();
+		
 		office = new Office();
 		add(office);
 	}
