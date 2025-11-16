@@ -5,6 +5,8 @@ import flixel.util.FlxTimer;
 
 class Office extends FlxSprite
 {
+	public var state:String = '';
+
 	var path_prefix = 'assets/images/office/';
 
 	var transitioning:Bool = false;
@@ -24,6 +26,7 @@ class Office extends FlxSprite
 
 		transitioning = false;
 		animation_frame = 0;
+		state = 'idle';
 		loadGraphic(path_prefix + 'idle.png');
 	}
 
@@ -35,10 +38,14 @@ class Office extends FlxSprite
 		transitioning = true;
 		animation_frame = 1;
 
+		state = 'door-intro';
 		new FlxTimer().start(1 / 24, t ->
 		{
 			loadGraphic(path_prefix + 'door-intro_' + ((animation_frame < 10) ? '0' + animation_frame : '' + animation_frame) + '.png');
 			animation_frame++;
+
+			if (animation_frame == 13)
+				state = 'door';
 		}, 12);
 	}
 
@@ -50,10 +57,14 @@ class Office extends FlxSprite
 		transitioning = true;
 		animation_frame = 1;
 
+		state = 'door-outro';
 		new FlxTimer().start(1 / 24, t ->
 		{
 			loadGraphic(path_prefix + 'door-outro_' + ((animation_frame < 10) ? '0' + animation_frame : '' + animation_frame) + '.png');
 			animation_frame++;
+
+			if (animation_frame == 13)
+				state = 'idle';
 		}, 12);
 	}
 }

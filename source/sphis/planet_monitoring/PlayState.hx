@@ -28,5 +28,10 @@ class PlayState extends FlxState
 
 		office.x -= Math.sin((time) * 2) * 5;
 		office.y += Math.cos((time) * 2) * 5;
+
+		if (FlxG.keys.justReleased.LEFT && office.state == 'idle')
+			office.doorIntro();
+		if (FlxG.keys.justReleased.RIGHT && office.state == 'door')
+			office.doorOutro();
 	}
 }
