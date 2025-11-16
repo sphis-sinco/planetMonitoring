@@ -12,15 +12,18 @@ class PlayState extends FlxState
 		super.create();
 
 		office = new Office();
+		office.updateHitbox();
 		add(office);
 	}
 
+	var time:Float = 0.0;
+	
 	override public function update(elapsed:Float)
 	{
 		super.update(elapsed);
 
-		office.screenCenter();
-		office.x += (FlxG.mouse.x / 10);
-		office.y += (FlxG.mouse.y / 10);
+		time += elapsed;
+		office.x = 0 - Math.sin((time) * 2) * 5;
+		office.y = 0 + Math.cos((time) * 2) * 5;
 	}
 }
