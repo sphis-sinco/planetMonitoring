@@ -7,10 +7,11 @@ class Office extends FlxSprite
 {
 	public var state:String = '';
 
+	public var animation_frame:Int = 0;
+
 	var path_prefix = 'assets/images/office/';
 
 	var transitioning:Bool = false;
-	var animation_frame:Int = 0;
 
 	override public function new()
 	{
@@ -41,12 +42,18 @@ class Office extends FlxSprite
 		state = 'door-intro';
 		new FlxTimer().start(1 / 24, t ->
 		{
-			loadGraphic(path_prefix + 'door-intro/door-intro_' + ((animation_frame < 10) ? '0' + animation_frame : '' + animation_frame) + '.png');
+			loadGraphic(path_prefix
+				+ 'door-intro/door-intro_'
+				+ ((animation_frame < 10) ? '0' + animation_frame : '' + animation_frame)
+				+ '.png');
 			animation_frame++;
 
-			if (animation_frame == 13)
+			if (animation_frame >= 13)
+			{
 				state = 'door';
-		}, 12);
+				transitioning = false;
+			}
+		}, 13);
 	}
 
 	public function doorOutro()
@@ -60,11 +67,17 @@ class Office extends FlxSprite
 		state = 'door-outro';
 		new FlxTimer().start(1 / 24, t ->
 		{
-			loadGraphic(path_prefix + 'door-outro/door-outro_' + ((animation_frame < 10) ? '0' + animation_frame : '' + animation_frame) + '.png');
+			loadGraphic(path_prefix
+				+ 'door-outro/door-outro_'
+				+ ((animation_frame < 10) ? '0' + animation_frame : '' + animation_frame)
+				+ '.png');
 			animation_frame++;
 
-			if (animation_frame == 13)
-				state = 'idle';
-		}, 12);
+			if (animation_frame >= 12)
+			{
+				transitioning = false;
+				idle();
+			}
+		}, 11);
 	}
 }
