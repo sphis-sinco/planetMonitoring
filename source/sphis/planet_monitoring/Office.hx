@@ -41,7 +41,7 @@ class Office extends FlxSprite
 		state = 'door-intro';
 		new FlxTimer().start(1 / 24, t ->
 		{
-			loadGraphic(path_prefix + 'door-intro_' + ((animation_frame < 10) ? '0' + animation_frame : '' + animation_frame) + '.png');
+			loadGraphic(path_prefix + 'door-intro/door-intro_' + ((animation_frame < 10) ? '0' + animation_frame : '' + animation_frame) + '.png');
 			animation_frame++;
 
 			if (animation_frame == 13)
@@ -60,7 +60,7 @@ class Office extends FlxSprite
 		state = 'door-outro';
 		new FlxTimer().start(1 / 24, t ->
 		{
-			loadGraphic(path_prefix + 'door-outro_' + ((animation_frame < 10) ? '0' + animation_frame : '' + animation_frame) + '.png');
+			loadGraphic(path_prefix + 'door-outro/door-outro_' + ((animation_frame < 10) ? '0' + animation_frame : '' + animation_frame) + '.png');
 			animation_frame++;
 
 			if (animation_frame == 13)
